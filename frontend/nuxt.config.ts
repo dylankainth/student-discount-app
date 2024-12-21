@@ -11,6 +11,13 @@ export default defineNuxtConfig({
       display: 'standalone',
       background_color: '#ffffff',
       theme_color: '#ffffff',
+      icons : [
+        {
+          src: '/image.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+      ]
     },
   },
 })

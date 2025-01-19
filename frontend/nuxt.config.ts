@@ -6,7 +6,11 @@ export default defineNuxtConfig({
   ssr: false,
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@vite-pwa/nuxt',
+    '@vueuse/nuxt',
+  ],
   pwa: {
     manifest: {
       name: 'My Nuxt 3 App',

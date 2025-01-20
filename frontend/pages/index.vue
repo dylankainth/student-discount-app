@@ -10,8 +10,8 @@
 
 
       <div ref="el">
-        <div class="pt-5" v-for="discount in data" :key="discount.id">
-          <a href="#"
+        <div class="pt-5" v-for="discount in data" :key="discount.offerUid">
+          <NuxtLink :href="`/discounts/${discount.offerUid}`"
             class="flex bg-white border border-gray-200 rounded-lg shadow max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 h-36">
             <img class="object-cover w-1/3 rounded-s-lg h-full" :src="discount.defaultImage" alt="">
             <div class="flex flex-col justify-between p-4 leading-normal w-2/3">
@@ -23,7 +23,7 @@
                 {{ discount.brandName }}
               </p>
             </div>
-          </a>
+          </NuxtLink>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 
-const discountData = await $fetch('/api/discountProxy?page=1')
+const discountData = await $fetch('/api/getDiscounts?page=1')
 var discounts = discountData.hits
 
 import { useInfiniteScroll } from '@vueuse/core'
@@ -62,7 +62,7 @@ const { reset } = useInfiniteScroll(
   async () => {
     // load more
     pages.value++
-    const newDiscountData = await $fetch(`/api/discountProxy?page=${pages.value}`)
+    const newDiscountData = await $fetch(`/api/getDiscounts?page=${pages.value}`)
     const newDiscounts = newDiscountData.hits
     data.value = [...data.value, ...newDiscounts]
   },
